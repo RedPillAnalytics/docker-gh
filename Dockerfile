@@ -1,8 +1,11 @@
 FROM ubuntu
 
-ENV SOMETHING=this
-
 # Run the Update
-RUN apt-get update && apt-get upgrade -y
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install -y software-properties-common
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+RUN apt-add-repository -y https://cli.github.com/packages
+RUN apt install -y gh
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["gh"]
